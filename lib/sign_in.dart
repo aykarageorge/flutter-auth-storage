@@ -15,9 +15,16 @@ class SignIn extends StatefulWidget {
 class _SignInState extends State<SignIn> {
 
   final _auth = FirebaseAuth.instance;
+
   String email;
   String password;
   bool showSpinner = false;
+
+  _getUser() async {
+     FirebaseUser _user = await _auth.currentUser();
+     if(_user != null)
+      Navigator.pushNamed(context, Home.id);
+  }
 
   @override
   Widget build(BuildContext context) {
